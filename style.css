@@ -1,0 +1,298 @@
+/* Base styles and container sizing */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-size: 12px; /* Smaller base font size */
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px; /* Adjusted width for component */
+    padding: 25px; /* Adjusted padding */
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Header styles */
+.header {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.yay-text {
+    font-size: 24px; /* Adjusted heading font size */
+    font-weight: bold;
+    color: #e91e63;
+    text-transform: uppercase;
+}
+
+/* Product options container */
+.product-options {
+    margin-bottom: 15px;
+}
+
+/* Individual option card styles */
+.option-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Custom radio button styles */
+.option-card input[type="radio"] {
+    margin-right: 15px;
+    margin-top: 3px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.option-card input[type="radio"]:checked {
+    border-color: #e91e63;
+}
+
+.option-card input[type="radio"]:checked::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: #e91e63;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Label (main clickable area) styling */
+.option-card label {
+    flex-grow: 1;
+    display: flex; /* Changed to flex for vertical stacking of main-info and unit-details */
+    flex-direction: column;
+    align-items: flex-start; /* Align contents to the left */
+    cursor: pointer;
+    width: calc(100% - 33px); /* Account for radio button + its margin */
+}
+
+/* Main information section within each option (Unit, Discount, Price) */
+.option-card .main-info {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 5px 10px;
+    text-align: left;
+    width: 100%;
+}
+
+.option-card .unit-text {
+    font-weight: bold;
+    font-size: 14px; /* Adjusted font size */
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.option-card .discount-tag {
+    background-color: #ffe0b2;
+    color: #ff9800;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 9px; /* Adjusted font size */
+    font-weight: bold;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    width: fit-content;
+}
+
+.option-card .price {
+    font-weight: bold;
+    font-size: 14px; /* Adjusted font size */
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    text-align: right;
+}
+
+.option-card .original-price {
+    text-decoration: line-through;
+    color: #888;
+    font-size: 11px; /* Adjusted font size */
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    text-align: right;
+}
+
+.option-card .standard-price {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    color: #888;
+    font-size: 11px; /* Adjusted font size */
+    margin-top: 2px;
+}
+
+/* Most Popular card specific styles */
+.popular-card {
+    border-color: #e91e63;
+    background-color: #fff0f5;
+    padding-top: 30px;
+}
+
+.most-popular {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    background-color: #e91e63;
+    color: #fff;
+    font-size: 9px; /* Adjusted font size */
+    font-weight: bold;
+    padding: 3px 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    transform: translateY(-100%);
+}
+
+/* Unit details section (Size/Colour dropdowns) */
+.unit-details {
+    width: 100%;
+    margin-top: 15px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    display: none; /* Hidden by default, JavaScript will show/hide */
+    flex-direction: column;
+    gap: 8px; /* Space between rows of details */
+}
+
+/* Header row for Size/Colour labels */
+.unit-details .detail-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Align headers with dropdowns below */
+    font-weight: bold;
+    font-size: 10px; /* Smaller font for headers */
+    color: #333;
+    margin-bottom: 5px; /* Space below headers */
+    gap: 10px; /* Reduced gap for headers */
+}
+
+.unit-details .header-unit-label {
+    /* This creates an empty space equivalent to the unit-label span */
+    width: 20px; /* Match width of unit-label below */
+    flex-shrink: 0;
+    visibility: hidden; /* Keep space but hide text */
+}
+
+.unit-details .header-label {
+    flex-basis: 90px; /* NEW: Fixed base width for dropdown headers */
+    flex-grow: 0; /* Prevent it from growing */
+    flex-shrink: 0; /* Prevent it from shrinking */
+    text-align: left;
+    margin-left: 0; /* Remove specific margin, let flex handle it */
+}
+
+
+/* Individual rows for #1, #2, etc. */
+.unit-details .detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Align items vertically in the middle */
+    gap: 10px; /* Reduced gap between unit label and dropdowns, and between dropdowns */
+}
+
+.unit-details .unit-label {
+    font-size: 10px; /* Smaller font for #1, #2 labels */
+    color: #555;
+    width: 20px; /* Fixed width for alignment */
+    flex-shrink: 0;
+    text-align: right; /* Align unit labels to the right */
+}
+
+.unit-details .dropdown-container {
+    flex-basis: 90px; /* NEW: Set a fixed base width for each dropdown container */
+    flex-grow: 0; /* Prevent it from growing */
+    flex-shrink: 0; /* Prevent it from shrinking */
+}
+
+.unit-details select {
+    padding: 3px 5px; /* Reduced padding for dropdowns */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 10px; /* Smaller font size for dropdowns */
+    width: 100%; /* Make select fill its fixed-width container */
+    height: 24px; /* Explicit height to make them shorter consistently */
+    box-sizing: border-box; /* Include padding and border in the height calculation */
+}
+
+/* Delivery and Total section */
+.delivery-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed #eee;
+    font-size: 13px; /* Adjusted font size */
+    font-weight: bold;
+}
+
+.free-delivery {
+    color: #4CAF50;
+}
+
+.total-text {
+    color: #e91e63;
+}
+
+/* Add to Cart Button */
+.add-to-cart-btn {
+    background-color: #e91e63;
+    color: #fff;
+    padding: 14px 22px; /* Adjusted padding for button */
+    border: none;
+    border-radius: 4px;
+    font-size: 16px; /* Adjusted font size */
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px; /* Adjusted gap */
+    transition: background-color 0.2s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #d81b60;
+}
+
+.plus-icon {
+    font-size: 22px; /* Adjusted plus icon size */
+    line-height: 1;
+}
+
+/* Powered by text */
+.powered-by {
+    font-size: 9px; /* Adjusted font size */
+    color: #aaa;
+    margin-top: 15px;
+    text-align: right; /* Align text to the right within its own box */
+    padding-right: 10px; /* Push it slightly from the right edge */
+}
