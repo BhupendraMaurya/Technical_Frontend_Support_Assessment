@@ -38,4 +38,4 @@ This page is ready to go! You can easily host it on services like Netlify or Git
 3.  Netlify will automatically build and publish your site!
 
 ===============
-BOGO Offer Selection Page URL: [https://fascinating-scone-e9a8a4.netlify.app/](url)
+BOGO Offer Selection Page URL: https://fascinating-scone-e9a8a4.netlify.app/
